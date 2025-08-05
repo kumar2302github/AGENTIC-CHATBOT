@@ -24,6 +24,6 @@ class GraphBuilder:
         Setup the graph with the basic chatbot node.
         This method is called to initialize the graph with the basic chatbot node.
         """
-        if usecase != "Basic_Chatbot":
+        if usecase != "Basic Chatbot":
             self.basic_chatbot_build_graph()
         return self.graph_builder.compile()

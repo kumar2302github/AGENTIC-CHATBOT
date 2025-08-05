@@ -1,11 +1,11 @@
 import streamlit as st
 import os
 
-from src.langgraphagenticai.ui.uiconfigfile import config
+from src.langgraphagenticai.ui.uiconfigfile import Config
 
 class LoadStreamlitUI:
     def __init__(self):
-        self.config = config()
+        self.config = Config()
         self.user_controls={}
 
     def load_streamlit_ui(self):
@@ -18,12 +18,12 @@ class LoadStreamlitUI:
             usecase_options = self.config.get_usecase_options()
 
             #llm selection
-            self.user_controls['llm'] = st.selectbox("Select LLM", llm_options)
+            self.user_controls['selected_llm'] = st.selectbox("Select LLM", llm_options)
 
-            if self.user_controls['llm']:
+            if self.user_controls['selected_llm']== "Groq":
                 # If LLM is selected, show use case options
                 model_options = self.config.get_groq_model_options()
-                self.user_controls['Groq Model'] = st.selectbox("Select Groq Model", model_options)
+                self.user_controls['selected_groq_model'] = st.selectbox("Select Groq Model", model_options)
                 self.user_controls['GROQ_API_KEY'] = st.session_state["GROQ_API_KEY"] = st.text_input("Enter Groq API Key", type="password")
                 #if not valid API key
                 if not self.user_controls['GROQ_API_KEY']:
@@ -31,6 +31,6 @@ class LoadStreamlitUI:
             
 
             #use case selection
-            self.user_controls['usecase'] = st.selectbox("Select Use Case", usecase_options)
+            self.user_controls['selected_usecase'] = st.selectbox("Select Usecases", usecase_options)
         
         return self.user_controls

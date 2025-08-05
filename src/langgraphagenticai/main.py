@@ -15,7 +15,7 @@ def load_langgraph_agenticai_app():
         st.error("Failed to load user input from ui")
         return 
     
-    user_message = st.chat_input("Enter Message")
+    user_message = st.chat_input("Enter Message:")
  
     if user_message:
         try:
@@ -26,7 +26,7 @@ def load_langgraph_agenticai_app():
                 st.error("Failed to initialize the LLM model.")
                 return
             #intialize and set up the graph based on use case
-            usecase =user_input.get('select_usecase')
+            usecase =user_input.get('selected_usecase')
             if not usecase:
                 st.error("No use case selected.")
                 return
